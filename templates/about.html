@@ -1,10 +1,23 @@
 <!DOCTYPE html>
+
+{% load staticfiles %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div>
+    This tutorial has been put together by Lt.Bamboo<br/>
+</div>
+<div>
+    <img src={% static "images/crash.jpg" %}
+                 alt = "A large crashed ship"/>
+</div>
+<div>
+    <img src="{{ MEDIA_URL }}cat.jpg"
+                 alt = "cute cat"/>
+</div>
 </body>
 </html>
