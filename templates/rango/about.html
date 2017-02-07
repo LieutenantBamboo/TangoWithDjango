@@ -1,3 +1,30 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    About
+{% endblock %}
+
+{% block body_block %}
+    <a href="/rango/">Back To Home</a>
+
+    <div>
+        This tutorial has been put together by Lt.Bamboo<br/>
+    </div>
+    <div>
+        <img src="{% static  "images/crash.jpg" %}"
+             alt="A large crashed ship"/>
+    </div>
+    <div>
+        <img src="{{ MEDIA_URL }}cat.jpg"
+             alt=" A Cute Cat"/>
+    </div>
+
+{% endblock %}
+
+
+
+<!-- Pre-Template Code>
 <!DOCTYPE html>
 
 {% load staticfiles %}
@@ -21,3 +48,4 @@
 </div>
 </body>
 </html>
+-->
