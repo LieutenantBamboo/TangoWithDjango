@@ -14,11 +14,13 @@ class CategoryForm(forms.ModelForm):
         fields = ('name',)
 
 class PageForm(forms.ModelForm):
+    category = Category.name
     title = forms.CharField(max_length=Page.max_length,
                             help_text="Please enter the title of the page.")
     url = forms.URLField(max_length=200,
                          help_text = "Please enter the URL of the page.")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
     class Meta:
         model = Page
