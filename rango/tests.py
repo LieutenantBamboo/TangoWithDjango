@@ -28,6 +28,18 @@ class CategoryMethodTests(TestCase):
         cat.save()
         self.assertEqual(cat.slug, 'random-category-string')
 
+class PathMethodTests(TestCase):
+    def test_timedate_not_in_future(self):
+        """
+        Ensure that the last visit or first visit is not in the future
+        """
+        pass
+
+    def test_first_visit_at_or_before_last_visit(self):
+        """
+        Ensure that the
+        """
+        pass
 
 class IndexViewTests(TestCase):
 
@@ -57,6 +69,17 @@ class IndexViewTests(TestCase):
 
 
 # Start of given tests for up to chapter 7 (Old, not needed)
+#
+#
+#
+#
+# Start of given tests for up to chapter 7 (Old, not needed)
+#
+#
+#
+#
+# Start of given tests for up to chapter 7 (Old, not needed)
+
 
 class GeneralTests(TestCase):
     def test_serving_static_files(self):
