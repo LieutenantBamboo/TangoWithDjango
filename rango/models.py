@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
+
 class Category(models.Model):
     max_length = 128
     name = models.CharField(max_length=max_length, unique=True)
@@ -10,7 +11,7 @@ class Category(models.Model):
     slug = models.SlugField()
 
     def save(self, *args, **kwargs):
-        if (self.views < 0):
+        if self.views < 0:
             self.views = 0
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
@@ -21,8 +22,8 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class Page(models.Model):
 
+class Page(models.Model):
     max_length = 128
     category = models.ForeignKey(Category)
     title = models.CharField(max_length=128)
@@ -35,6 +36,8 @@ class Page(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
 class UserProfile(models.Model):
     # Required Line - links class to model instance
     user = models.OneToOneField(User)
