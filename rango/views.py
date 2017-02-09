@@ -134,9 +134,9 @@ def user_login(request):
             if user.is_active:
                 # Logs user in, sends back to homepage
                 login(request, user)
-                return HttpResponse(reverse('index'))
+                return HttpResponseRedirect(reverse('index'))
             else:
-                #
+                # Warns the user that their account is inactive
                 return HttpResponse("Your Rango account is disabled.")
         else:
             # Bad login details
