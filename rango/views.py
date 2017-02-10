@@ -3,8 +3,9 @@ from django.shortcuts import render
 from rango.models import Category
 from rango.models import Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 
 
 def show_category(request, category_name_slug):
@@ -62,6 +63,7 @@ def add_page(request, category_name_slug):
 
 
 def index(request):
+    request.session.set_test_cookie()
     category_list = Category.objects.order_by('-likes')[:5]
     page_list = Page.objects.order_by('-views')[:5]
     context_dict = {'categories': category_list,
@@ -70,6 +72,9 @@ def index(request):
 
 
 def about(request):
+    if request.session.test_cookie_worked():
+        print("TEST COOKIE WORKED!")
+        request.session.delete_test_cookie()
     return render(request, 'rango/about.html')
 
 
@@ -141,8 +146,19 @@ def user_login(request):
         else:
             # Bad login details
             print("Bad login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
+            return HttpResponse("Invalid username or password")
 
     # If not POST (positng details), then it's GET, therefore login form is displayed
     else:
         return render(request, 'rango/login.html', {})
+
+
+@login_required
+def restricted(request):
+    return render(request, 'rango/restricted.html', {})
+
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))
